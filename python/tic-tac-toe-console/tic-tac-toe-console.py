@@ -75,7 +75,7 @@ def winner_check():
             is_viner = '1'
         return True
     if move_count == 9 and  is_viner == '0':
-            print("НИЧЬЯ")
+        print("НИЧЬЯ")
         return True
 # приветствие
 print("-------------------")
