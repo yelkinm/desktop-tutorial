@@ -40,19 +40,21 @@ def input_data():
     global move_sign
     try:# тут можно переписать без try  но пусть пока так
         if move_sign == 'x':
-            x_val, y_val = input("Введите координаты ходит КРЕСТИК: ").split()
+            x_val, y_val = input("Введите координаты ходит КРЕСТИК: ").split(' ')
         else:
-            x_val, y_val = input("Введите координаты ходит НОЛИКИ: ").split()
-        if x_val in (1,2,3) and y_val in (1,2,3):
+            x_val, y_val = input("Введите координаты ходит НОЛИКИ: ").split(' ')
+        if int(x_val) in (1,2,3) and int(y_val) in (1,2,3):
             set_table(int(x_val)-1,int(y_val)-1)
         else:
             raise Exception("Значение заполнено")
     except Exception:
         print('Вы ввели неверные координаты')
+    else:
         switch_sign()
 # проверяем на победу
 def winner_check():
     global fields, move_sign, move_count
+    is_viner = '0'
     #горизонтали
     #вертикали
     #диагонали
@@ -65,16 +67,17 @@ def winner_check():
         or fields[0][0] == fields[1][1] == fields[2][2] != '-'\
         or fields[0][2] == fields[1][1] == fields[2][0] != '-'\
         or move_count == 9:
-        if move_count == 9:
-            print("НИЧЬЯ")
-            return True
+        # тут инверсия, т.к. мы анализируем предыдущий ход
+        if  move_sign == '0' :
+            print("Победил Крестик")
+            is_viner = '1'
         else:
-            # тут инверсия, т.к. мы анализируем предыдущий ход
-            if  move_sign == '0' :
-                print("Победил Крестик")
-            else:
-                print("Победил Нолик")
-            return True
+            print("Победил Нолик")
+            is_viner = '1'
+        return True
+        if move_count == 9 and  is_viner == '0':
+            print("НИЧЬЯ")
+        return True
 # приветствие
 print("-------------------")
 print("  Приветсвуем вас  ")
