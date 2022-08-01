@@ -65,8 +65,7 @@ def winner_check():
         or fields[0][1] == fields[1][1] == fields[2][1] != '-' \
         or fields[0][2] == fields[1][2] == fields[2][2] != '-' \
         or fields[0][0] == fields[1][1] == fields[2][2] != '-'\
-        or fields[0][2] == fields[1][1] == fields[2][0] != '-'\
-        or move_count == 9:
+        or fields[0][2] == fields[1][1] == fields[2][0] != '-':
         # тут инверсия, т.к. мы анализируем предыдущий ход
         if  move_sign == '0' :
             print("Победил Крестик")
@@ -75,7 +74,7 @@ def winner_check():
             print("Победил Нолик")
             is_viner = '1'
         return True
-        if move_count == 9 and  is_viner == '0':
+    if move_count == 9 and  is_viner == '0':
             print("НИЧЬЯ")
         return True
 # приветствие
